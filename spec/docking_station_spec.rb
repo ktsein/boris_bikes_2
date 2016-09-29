@@ -4,7 +4,7 @@ require 'bike'
 describe DockingStation do
     it {is_expected.to respond_to :release_bike}
     it 'releases previously docked bike' do
-      bike = Bike.new
+      bike = double(:bike) #refer to class
       subject.dock_bike(bike)
       expect(subject.release_bike).to eq bike
     end
@@ -14,13 +14,13 @@ describe DockingStation do
 
     it {is_expected.to respond_to(:dock_bike).with(1).argument}
     it 'store the bike?' do
-      bike = Bike.new
+      bike = double(:bike) #refer to class
       subject.dock_bike(bike)
       expect(subject.bikes).to include (bike)
     end
     it 'raise an error if the station already has 20 bikes docked' do
-      DockingStation::DEFAULT_CAPACITY.times { subject.dock_bike Bike.new }
-      expect { subject.dock_bike(Bike.new)}.to raise_error('sorry this station is full')
+      DockingStation::DEFAULT_CAPACITY.times { subject.dock_bike double(:bike)} #refer to class
+      expect { subject.dock_bike(double(:bike))}.to raise_error('sorry this station is full') #refer to class
     end
 
     it 'can take an input of capacity when initialized' do
@@ -32,7 +32,7 @@ describe DockingStation do
     end
 
     it 'will not release a bike if it\'s broken' do
-      bike = Bike.new
+      bike = double(:bike)#refer to class
       subject.dock_bike(bike, 'broken')
       expect {subject.release_bike}.to raise_error("This bike is faulty")
     end
