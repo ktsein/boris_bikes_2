@@ -24,5 +24,12 @@ describe DockingStation do
       expect { subject.dock_bike(Bike.new)}.to raise_error('sorry this station is full')
     end
 
-    it {is_expected.to respond_to(:bikes)}
+    it 'can take an input of capacity when initialized' do
+      expect(DockingStation.new(30).capacity).to eq 30
+    end
+
+    it 'will have a capacity equal to the default if none specified' do
+      expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+    end
+
 end
