@@ -13,9 +13,12 @@ class DockingStation
     return @bikes.pop
   end
 
-  def dock_bike(bikes)
+  def dock_bike(bike, status = nil)
     fail "sorry this station is full" if full?
-    @bikes.push bikes
+    @bikes.push bike
+    if status == 'broken'
+      bike.working = false
+    end
   end
 
   private
@@ -28,10 +31,4 @@ class DockingStation
     @bikes.length == 0
   end
 
-end
-
-class Bike
-  def working?
-    true
-  end
 end
