@@ -1,5 +1,7 @@
 require 'docking_station'
 require 'bike'
+require 'van'
+require 'garage'
 
 describe Bike do
   #it 'allows user to be able to report the broken bike' do
